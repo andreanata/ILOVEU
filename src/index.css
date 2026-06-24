@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-blush-50: #fff6f8;
+  --color-blush-100: #ffedf2;
+  --color-blush-200: #ffd6e2;
+  --color-blush-300: #ffbfd0;
+  --color-rose-deep: #c83b64;
+  --color-rose-soft: #e95a84;
+  --color-champagne: #e7cfb6;
+  --color-gold: #d4a84b;
+  --color-ink: #302225;
+  --color-ink-2: #5a3b43;
+}
+
+* { font-variant-ligatures: common-ligatures; }
+
+html, body, #root { height: 100%; }
+body {
+  font-family: var(--font-sans);
+  background: #fff8f9;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-serif { font-family: var(--font-serif); }
+
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 12px 54px rgba(201, 77, 107, 0.13), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.glass-rose {
+  background: linear-gradient(180deg, rgba(255,241,245,0.78), rgba(255, 247, 250, 0.65));
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 212, 226, .9);
+  box-shadow: 0 14px 40px rgba(201, 66, 97, 0.10);
+}
+
+.petal {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.soft-shadow { box-shadow: 0 14px 48px rgba(178, 67, 89, .14); }
+.soft-shadow-sm { box-shadow: 0 8px 28px rgba(178, 67, 89, .11); }
+
+.text-rose-deep { color: var(--color-rose-deep); }
+.bg-rose-soft { background-color: var(--color-rose-soft); }
+
+.champagne-glow {
+  box-shadow: 0 0 44px rgba(232, 197, 137, .32), 0 8px 24px rgba(198, 91, 112, .12);
+}
+
+/* masonry via css columns */
+.masonry {
+  column-gap: 18px;
+}
+@media (min-width: 640px) { .masonry { column-count: 2; } }
+@media (min-width: 1024px) { .masonry { column-count: 3; } }
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 18px;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Spotify iframe rounding */
+.spotify-iframe { border-radius: 18px; width: 100%; border: 0; }
+
+/* Shimmer */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.shimmer::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  animation: shimmer 2.4s infinite;
+}
+
+/* For admin inputs */
+.al-input {
+  width: 100%;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #f4ccd7;
+  padding: 11px 14px;
+  outline: none;
+  font-size: 14.5px;
+  color: #3a2227;
+  transition: box-shadow .18s, border-color .18s;
+}
+.al-input:focus {
+  border-color: #f0a2b7;
+  box-shadow: 0 0 0 4px rgba(233, 90, 132, .14);
+}
+.al-label { font-size: 11.5px; text-transform: uppercase; letter-spacing: .09em; color: #9c5b6b; font-weight: 600; margin-bottom: 6px; display:block; }
+
+.al-btn {
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform .12s, box-shadow .18s, background .18s;
+}
+.al-btn:active { transform: translateY(1px) scale(.99); }
+.al-btn-primary {
+  background: linear-gradient(180deg, #ff6f96, #e74975);
+  color: white;
+  box-shadow: 0 8px 22px rgba(226, 63, 105, .28);
+}
+.al-btn-primary:hover { box-shadow: 0 10px 28px rgba(226, 63, 105, .35); }
+.al-btn-soft {
+  background: #fff1f5;
+  color: #bd3a60;
+  border: 1px solid #f7c8d6;
+}
+.al-btn-ghost {
+  background: transparent;
+  color: #8c4a5c;
+}
+.al-btn-ghost:hover { background: #fff1f5; }
+
+.link-underline {
+  background-image: linear-gradient(#e95a84,#e95a84);
+  background-size: 0% 1.5px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size .25s;
+}
+.link-underline:hover { background-size: 100% 1.5px; }
