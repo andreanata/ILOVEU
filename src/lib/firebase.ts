@@ -9,21 +9,26 @@
 // 3. Paste your config below (or use VITE_ env vars)
 // 4. Deploy. All devices will sync instantly via onSnapshot.
 
-import { initializeApp, getApps, type FirebaseApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
-import { getFirestore, type Firestore } from "firebase/firestore";
-import { getStorage, type FirebaseStorage } from "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-// --- Add your Firebase config here ---
-// You can also use VITE env vars: VITE_FIREBASE_API_KEY, etc.
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "andre-lulu.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "andre-lulu-love",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "andre-lulu-love.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "000000000000",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:000000000000:web:xxxxxxxxxxxxxxxxxxxxxx",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+export default app;
 
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
